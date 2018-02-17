@@ -8,23 +8,25 @@ import (
 func NewRootMutationSchema() *graphql.Object {
 	rootMutation := graphql.NewObject(
 		graphql.ObjectConfig{
-			Name:   "User",
+			Name: "User",
 			Fields: graphql.Fields{
 				"user": &graphql.Field{
-					Type:graphql.NewObject(graphql.ObjectConfig{
-						Name:"Params",
+					Type: graphql.NewObject(graphql.ObjectConfig{
+						Name: "Params",
 						Fields: graphql.Fields{
 							"id": &graphql.Field{
-								Type: graphql.Int
+								Type: graphql.Int,
 							},
 							"name": &graphql.Field{
-								Type: graphql.String
+								Type: graphql.String,
 							},
-						}
+							"age": &graphql.Field{
+								Type: graphql.Int,
+							},
+						},
 					}),
 				},
 			},
-
 		},
 	)
 	return rootMutation
