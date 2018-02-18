@@ -1,3 +1,7 @@
 development:
   driver: mymysql
-  open: tcp:localhost:3306*karacuri-house-dev/root/
+  open: root:@unix(/cloudsql/karacuri-house:us-central1:karacuri-house)/karacuri-house #tcp:localhost:3306*karacuri-house-dev/root/
+
+# production:
+#   driver: mymysql
+#   open: root:@unix(/cloudsql/karacuri-house:us-central1:karacuri-house)/karacuri-house?charset=utf8&parseTime=True

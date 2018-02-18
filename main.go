@@ -7,7 +7,6 @@ import (
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
 	"github.com/karacuri-house/application"
-	"github.com/karacuri-house/infrastructure/database"
 )
 
 func main() {
