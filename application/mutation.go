@@ -4,25 +4,26 @@ import (
 	"github.com/graphql-go/graphql"
 )
 
+type User struct {
+	ID   int
+	Name string
+	Age  int
+}
+
 var userGQLobject = graphql.NewObject(graphql.ObjectConfig{
-	Name: "user",
+	Name: "User",
 	Fields: graphql.Fields{
-		Type: graphql.NewObject(graphql.ObjectConfig {
-			Name: "Params",
-			Fields: graphql.Field{
-					"id": &graphql.Field{
-						Type: graphql.Int,
-					},
-					"name": &graphql.Field{
-						Type: graphql.String,
-					},
-					"age": &graphql.Field{
-						Type: graphql.Int,
-					},
-				}
-			}
-		)
-	}}
+		"id": &graphql.Field{
+			Type: graphql.Int,
+		},
+		"name": &graphql.Field{
+			Type: graphql.String,
+		},
+		"age": &graphql.Field{
+			Type: graphql.Int,
+		},
+	},
+},
 )
 
 // NewRootMutationSchema is build for application root mutation
@@ -32,34 +33,33 @@ func NewRootMutationSchema() *graphql.Object {
 			Name: "RootMutation",
 			Fields: graphql.Fields{
 				"createUser": &graphql.Field{
-					Type:	userGQLobject,
+					Type:        userGQLobject,
 					Description: "Create New User",
-					Args: graphql.FieldConfigArgument {
-						"name":	&graphql.ArgumentConfig{
-							Type: graphql.NewNonNull(graphql.String)
+					Args: graphql.FieldConfigArgument{
+						"name": &graphql.ArgumentConfig{
+							Type: graphql.NewNonNull(graphql.String),
 						},
 						"age": &graphql.ArgumentConfig{
-							Type: graphql.NewNonNull(graphql.Int)
+							Type: graphql.NewNonNull(graphql.Int),
 						},
 					},
 					Resolve: func(params graphql.ResolveParams) (interface{}, error) {
 						name, _ := params.Args["name"].(string)
 						age, _ := params.Args["age"].(int)
-						newID := RandStringRunes(8)
+						newID := 10
 
 						newUser := User{
-							ID:	newID,
+							ID:   newID,
 							Name: name,
-							Age: age
+							Age:  age,
 						}
 
-						return newUser
+						return newUser, nil
 					},
 				},
 			},
 		},
-
 	)
-	
+
 	return rootMutation
 }
